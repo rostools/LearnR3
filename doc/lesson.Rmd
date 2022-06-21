@@ -111,3 +111,40 @@ user_1_rr_data <- vroom(
 )
 ```
 
+
+
+```{r}
+name <- function(argument1, arugment2) {
+    output <- ...code...
+    return(output)
+}
+```
+
+## Making a function
+
+```{r}
+#' Add two numbers together.
+#'
+#' @param num1 A number
+#' @param num2 A number
+#'
+#' @return The sum of two numbers
+#' 
+add_numbers <- function(num1, num2){
+    added <- num1 + num2
+    return(added)
+}
+```
+
+```{r}
+
+```
+
+
+
+
+
+
+
+
+
