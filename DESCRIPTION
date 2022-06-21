@@ -4,7 +4,11 @@ Version: 0.0.1
 Imports:
     knitr,
     rmarkdown,
-    distill
+    distill,
+    vroom,
+    here,
+    fs,
+    snakecase
 Encoding: UTF-8
-URL: https://github.com/rostools/LearnR3
-BugReports: https://github.com/rostools/LearnR3/issues
+Depends: 
+    tidyverse
