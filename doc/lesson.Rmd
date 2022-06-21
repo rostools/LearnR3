@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
 library(here)
-library(vroom)
+source(here("R/functions.R"))
 ```
 
 ## importing raw data
@@ -138,27 +138,7 @@ add_numbers <- function(num1, num2){
 
 
 ```{r}
-#' Import MMASH user info data file. 
-#'
-#' @param file_path Path to user info data. 
-#'
-#' @return a dataframe / tibble
-#'
-import_user_info <- function(file_path) {
-    info_data <- vroom(
-        file_path,
-        col_select = -1,
-        col_types = cols(
-            gender = col_character(),
-            weight = col_double(),
-            height = col_double(),
-            age = col_double(),
-            .delim = ","
-        ),
-        .name_repair = snakecase::to_snake_case
-    )
-    return(info_data)
-}
+
 ```
 
 ```{r}
@@ -167,6 +147,35 @@ import_user_info(here("data-raw/mmash/user_1/user_info.csv"))
 import_user_info(here("data-raw/mmash/user_2/user_info.csv"))
 
 
+```
+
+
+## Exercise for importing the saliva data as a function. 
+
+```{r}
+#' Import the MMASH saliva dataset.
+#'
+#' @param file_path Path to the user saliva data file.
+#'
+#' @return Outputs a data frame/tibble.
+#'
+import_saliva <- function(file_path) {
+    saliva_data <- vroom(
+        file_path,
+        col_select = -1,
+        col_types = cols(
+            samples = col_character(),
+            cortisol_norm = col_double(),
+            melatonin_norm = col_double(),
+            .delim = ","
+        ),
+        .name_repair = snakecase::to_snake_case
+    )
+    return(saliva_data)
+}
+
+# Test that this works
+# import_saliva(here("data-raw/mmash/user_1/saliva.csv"))
 ```
 
 
