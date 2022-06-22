@@ -92,3 +92,15 @@ import_actigraph <- function(file_path) {
     )
     return(actigraph_data)
 }
+
+import_multiple_files <- function(file_pattern, import_function) {
+
+    data_files <- fs::dir_ls(here::here("data-raw/mmash/"),
+                             regexp = file_pattern,
+                             recurse = TRUE)
+
+    combined_data <- purrr::map_dfr(data_files, import_function,
+                                    .id = "file_path_id")
+
+    return(combined_data)
+}
