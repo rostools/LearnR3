@@ -9,6 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
 library(here)
+library(vroom)
 source(here("R/functions.R"))
 ```
 
