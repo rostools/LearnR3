@@ -13,7 +13,10 @@ library(vroom)
 library(fs)
 library(purrr)
 source(here("R/functions.R"))
+options(dplyr.summarise.inform = FALSE)
 ```
+
+
 
 
 
