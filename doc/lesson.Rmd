@@ -16,6 +16,16 @@ source(here("R/functions.R"))
 options(dplyr.summarise.inform = FALSE)
 ```
 
+## Using regex for user ID
+
+```{r}
+user_info_df <- import_multiple_files(
+    "user_info.csv",
+    import_user_info
+)
+# This tests that it works:
+extract_user_id(user_info_df)
+```
 
 
 

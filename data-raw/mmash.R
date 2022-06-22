@@ -38,9 +38,3 @@ summarised_actigraph <-actigraph_df %>%
                      na.rm = TRUE)) %>%
     ungroup()
 
-
-
-
-
-
-
