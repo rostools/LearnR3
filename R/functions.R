@@ -100,7 +100,8 @@ import_multiple_files <- function(file_pattern, import_function) {
                              recurse = TRUE)
 
     combined_data <- purrr::map_dfr(data_files, import_function,
-                                    .id = "file_path_id")
+                                    .id = "file_path_id") %>%
+        extract_user_id()
 
     return(combined_data)
 }
