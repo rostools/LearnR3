@@ -10,7 +10,18 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(here)
 library(vroom)
+library(fs)
+library(purrr)
 source(here("R/functions.R"))
+```
+
+## Using map
+```{r}
+user_info_files <- dir_ls(here("data-raw/mmash/"),
+                          recurse = TRUE,
+                          regexp = "user_info.csv")
+
+user_info_df <- map_dfr(user_info_files, import_user_info, .id = "file_path_id")
 ```
 
 
