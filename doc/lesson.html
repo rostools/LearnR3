@@ -368,106 +368,32 @@ pre code {
 </div>
 
 
-<div id="import" class="section level2">
-<h2>Import</h2>
-<pre class="r"><code>user_info_df &lt;- import_multiple_files(&quot;user_info.csv&quot;, import_user_info)
-saliva_df &lt;- import_multiple_files(&quot;saliva.csv&quot;, import_saliva)</code></pre>
-</div>
-<div id="select" class="section level2">
-<h2>Select</h2>
-<pre class="r"><code>user_info_df %&gt;%
-    select(age)</code></pre>
-<pre><code>## # A tibble: 22 × 1
-##      age
-##    &lt;dbl&gt;
-##  1    29
-##  2    27
-##  3    27
-##  4    27
-##  5    25
-##  6    27
-##  7    24
-##  8    27
-##  9    24
-## 10     0
-## # … with 12 more rows</code></pre>
-<pre class="r"><code>user_info_df %&gt;%
-    select(where(is.numeric))</code></pre>
-<pre><code>## # A tibble: 22 × 3
-##    weight height   age
-##     &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-##  1     65    169    29
-##  2     85    180    27
-##  3    115    186    27
-##  4     67    170    27
-##  5     74    180    25
-##  6     64    171    27
-##  7     80    180    24
-##  8     67    176    27
-##  9     60    175    24
-## 10     80    180     0
-## # … with 12 more rows</code></pre>
-<pre class="r"><code>user_info_df %&gt;%
-    select(where(is.character))</code></pre>
-<pre><code>## # A tibble: 22 × 2
-##    file_path_id                                                           gender
-##    &lt;chr&gt;                                                                  &lt;chr&gt; 
-##  1 /Users/andersaskeland/Documents/3 - Data science/teaching/LearnR3/dat… M     
-##  2 /Users/andersaskeland/Documents/3 - Data science/teaching/LearnR3/dat… M     
-##  3 /Users/andersaskeland/Documents/3 - Data science/teaching/LearnR3/dat… M     
-##  4 /Users/andersaskeland/Documents/3 - Data science/teaching/LearnR3/dat… M     
-##  5 /Users/andersaskeland/Documents/3 - Data science/teaching/LearnR3/dat… M     
-##  6 /Users/andersaskeland/Documents/3 - Data science/teaching/LearnR3/dat… M     
-##  7 /Users/andersaskeland/Documents/3 - Data science/teaching/LearnR3/dat… M     
-##  8 /Users/andersaskeland/Documents/3 - Data science/teaching/LearnR3/dat… M     
-##  9 /Users/andersaskeland/Documents/3 - Data science/teaching/LearnR3/dat… M     
-## 10 /Users/andersaskeland/Documents/3 - Data science/teaching/LearnR3/dat… M     
-## # … with 12 more rows</code></pre>
-</div>
-<div id="summarise" class="section level2">
-<h2>Summarise</h2>
-<pre class="r"><code>saliva_df %&gt;%
-    summarise(cortisol_mean = mean(cortisol_norm),
-              melatonin_mean = mean(melatonin_norm))</code></pre>
-<pre><code>## # A tibble: 1 × 2
-##   cortisol_mean melatonin_mean
-##           &lt;dbl&gt;          &lt;dbl&gt;
-## 1        0.0490  0.00000000765</code></pre>
-</div>
-<div id="using-across" class="section level2">
-<h2>Using across</h2>
-<pre class="r"><code>saliva_df %&gt;%
-    summarise(across(c(cortisol_norm, melatonin_norm), 
-                     list(mean = mean, sd = sd)))</code></pre>
-<pre><code>## # A tibble: 1 × 4
-##   cortisol_norm_mean cortisol_norm_sd melatonin_norm_mean melatonin_norm_sd
-##                &lt;dbl&gt;            &lt;dbl&gt;               &lt;dbl&gt;             &lt;dbl&gt;
-## 1             0.0490           0.0478       0.00000000765     0.00000000651</code></pre>
-</div>
-<div id="summarising-the-rr-dataset" class="section level2">
-<h2>Summarising the RR dataset</h2>
-<pre class="r"><code>rr_df &lt;- import_multiple_files(&quot;RR.csv&quot;, import_rr)
-
-summarised_rr_df &lt;- rr_df %&gt;%
-    group_by(file_path_id, day) %&gt;%
-    summarise(across(ibi_s, list(mean = mean, sd = sd), na.rm = TRUE)) %&gt;%
-    ungroup()
-
-summarised_rr_df</code></pre>
-<pre><code>## # A tibble: 44 × 4
-##    file_path_id                                          day ibi_s_mean ibi_s_sd
-##    &lt;chr&gt;                                               &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;
-##  1 /Users/andersaskeland/Documents/3 - Data science/t…     1      0.666   0.164 
-##  2 /Users/andersaskeland/Documents/3 - Data science/t…     2      0.793   0.194 
-##  3 /Users/andersaskeland/Documents/3 - Data science/t…     1      0.820   0.225 
-##  4 /Users/andersaskeland/Documents/3 - Data science/t…     2      0.856   0.397 
-##  5 /Users/andersaskeland/Documents/3 - Data science/t…     1      0.818   0.137 
-##  6 /Users/andersaskeland/Documents/3 - Data science/t…     2      0.923   0.182 
-##  7 /Users/andersaskeland/Documents/3 - Data science/t…     1      0.779   0.0941
-##  8 /Users/andersaskeland/Documents/3 - Data science/t…     2      0.883   0.258 
-##  9 /Users/andersaskeland/Documents/3 - Data science/t…     1      0.727   0.147 
-## 10 /Users/andersaskeland/Documents/3 - Data science/t…     2      0.953   0.151 
-## # … with 34 more rows</code></pre>
+<div id="pivot-longer" class="section level2">
+<h2>Pivot longer</h2>
+<pre class="r"><code>mmash %&gt;% 
+    select(-samples) %&gt;% 
+    pivot_longer(c(-user_id, -day, -gender)) %&gt;% 
+    group_by(gender, day, name) %&gt;% 
+    summarise(across(
+        value,
+        list(mean = mean, sd = sd), 
+        na.rm = TRUE
+    )) %&gt;% 
+    ungroup()</code></pre>
+<pre><code>## # A tibble: 66 × 5
+##    gender   day name           value_mean      value_sd
+##    &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;         &lt;dbl&gt;
+##  1 M          1 age               2.60e+1 7.28         
+##  2 M          1 cortisol_norm     2.81e-2 0.0305       
+##  3 M          1 height            1.80e+2 8.34         
+##  4 M          1 hr_mean           8.10e+1 7.65         
+##  5 M          1 hr_sd             1.27e+1 4.95         
+##  6 M          1 ibi_s_mean        7.60e-1 0.0797       
+##  7 M          1 ibi_s_sd          1.77e-1 0.0860       
+##  8 M          1 melatonin_norm    8.33e-9 0.00000000671
+##  9 M          1 steps_mean        2.47e-1 0.0611       
+## 10 M          1 steps_sd          4.86e-1 0.0699       
+## # … with 56 more rows</code></pre>
 </div>
 
 
