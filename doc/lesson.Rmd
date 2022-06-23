@@ -22,16 +22,10 @@ load(here("data/mmash.rda"))
 
 ```{r}
 mmash %>% 
-    select(-samples) %>% 
-    pivot_longer(c(-user_id, -day, -gender)) %>% 
-    group_by(gender, day, name) %>% 
-    summarise(across(
-        value,
-        list(mean = mean, sd = sd), 
-        na.rm = TRUE
-    )) %>% 
-    ungroup()
+    tidy_summarise_by_day(list(mean = mean, min = min, max = max)) %>% 
+    knitr::kable(caption = "Descriptive statics of some variables.")
 ```
+
 
 
 

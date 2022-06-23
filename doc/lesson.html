@@ -371,29 +371,145 @@ pre code {
 <div id="pivot-longer" class="section level2">
 <h2>Pivot longer</h2>
 <pre class="r"><code>mmash %&gt;% 
-    select(-samples) %&gt;% 
-    pivot_longer(c(-user_id, -day, -gender)) %&gt;% 
-    group_by(gender, day, name) %&gt;% 
-    summarise(across(
-        value,
-        list(mean = mean, sd = sd), 
-        na.rm = TRUE
-    )) %&gt;% 
-    ungroup()</code></pre>
-<pre><code>## # A tibble: 66 × 5
-##    gender   day name           value_mean      value_sd
-##    &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;         &lt;dbl&gt;
-##  1 M          1 age               2.60e+1 7.28         
-##  2 M          1 cortisol_norm     2.81e-2 0.0305       
-##  3 M          1 height            1.80e+2 8.34         
-##  4 M          1 hr_mean           8.10e+1 7.65         
-##  5 M          1 hr_sd             1.27e+1 4.95         
-##  6 M          1 ibi_s_mean        7.60e-1 0.0797       
-##  7 M          1 ibi_s_sd          1.77e-1 0.0860       
-##  8 M          1 melatonin_norm    8.33e-9 0.00000000671
-##  9 M          1 steps_mean        2.47e-1 0.0611       
-## 10 M          1 steps_sd          4.86e-1 0.0699       
-## # … with 56 more rows</code></pre>
+    tidy_summarise_by_day(list(mean = mean, min = min, max = max)) %&gt;% 
+    knitr::kable(caption = &quot;Descriptive statics of some variables.&quot;)</code></pre>
+<table>
+<caption>Descriptive statics of some variables.</caption>
+<colgroup>
+<col width="7%" />
+<col width="15%" />
+<col width="13%" />
+<col width="13%" />
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">gender</th>
+<th align="left">name</th>
+<th align="right">value_mean_1</th>
+<th align="right">value_mean_2</th>
+<th align="right">value_min_1</th>
+<th align="right">value_min_2</th>
+<th align="right">value_max_1</th>
+<th align="right">value_max_2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">M</td>
+<td align="left">age</td>
+<td align="right">25.95</td>
+<td align="right">25.95</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">40.00</td>
+<td align="right">40.00</td>
+</tr>
+<tr class="even">
+<td align="left">M</td>
+<td align="left">cortisol_norm</td>
+<td align="right">0.03</td>
+<td align="right">0.07</td>
+<td align="right">0.01</td>
+<td align="right">0.02</td>
+<td align="right">0.16</td>
+<td align="right">0.26</td>
+</tr>
+<tr class="odd">
+<td align="left">M</td>
+<td align="left">height</td>
+<td align="right">180.14</td>
+<td align="right">180.14</td>
+<td align="right">169.00</td>
+<td align="right">169.00</td>
+<td align="right">205.00</td>
+<td align="right">205.00</td>
+</tr>
+<tr class="even">
+<td align="left">M</td>
+<td align="left">hr_mean</td>
+<td align="right">80.96</td>
+<td align="right">66.89</td>
+<td align="right">70.27</td>
+<td align="right">56.84</td>
+<td align="right">97.47</td>
+<td align="right">83.10</td>
+</tr>
+<tr class="odd">
+<td align="left">M</td>
+<td align="left">hr_sd</td>
+<td align="right">12.70</td>
+<td align="right">15.49</td>
+<td align="right">7.85</td>
+<td align="right">7.64</td>
+<td align="right">31.86</td>
+<td align="right">38.61</td>
+</tr>
+<tr class="even">
+<td align="left">M</td>
+<td align="left">ibi_s_mean</td>
+<td align="right">0.76</td>
+<td align="right">0.92</td>
+<td align="right">0.62</td>
+<td align="right">0.75</td>
+<td align="right">0.96</td>
+<td align="right">1.06</td>
+</tr>
+<tr class="odd">
+<td align="left">M</td>
+<td align="left">ibi_s_sd</td>
+<td align="right">0.18</td>
+<td align="right">0.28</td>
+<td align="right">0.09</td>
+<td align="right">0.15</td>
+<td align="right">0.44</td>
+<td align="right">0.56</td>
+</tr>
+<tr class="even">
+<td align="left">M</td>
+<td align="left">melatonin_norm</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">M</td>
+<td align="left">steps_mean</td>
+<td align="right">0.25</td>
+<td align="right">0.09</td>
+<td align="right">0.14</td>
+<td align="right">0.02</td>
+<td align="right">0.38</td>
+<td align="right">0.16</td>
+</tr>
+<tr class="even">
+<td align="left">M</td>
+<td align="left">steps_sd</td>
+<td align="right">0.49</td>
+<td align="right">0.31</td>
+<td align="right">0.37</td>
+<td align="right">0.15</td>
+<td align="right">0.67</td>
+<td align="right">0.50</td>
+</tr>
+<tr class="odd">
+<td align="left">M</td>
+<td align="left">weight</td>
+<td align="right">75.29</td>
+<td align="right">75.29</td>
+<td align="right">60.00</td>
+<td align="right">60.00</td>
+<td align="right">115.00</td>
+<td align="right">115.00</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 

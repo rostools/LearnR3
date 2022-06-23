@@ -120,3 +120,30 @@ extract_user_id <- function(imported_data) {
         dplyr::select(-file_path_id)
     return(extracted_id)
 }
+
+
+#' Calculate tidy summary statistics by day.
+#'
+#' @param data The MMASH dataset.
+#'
+#' @return A data.frame/tibble.
+#'
+tidy_summarise_by_day <- function(data, summary_fn) {
+    daily_summary <- data %>%
+        dplyr::select(-samples) %>%
+        tidyr::pivot_longer(c(-user_id, -day, -gender)) %>%
+        tidyr::drop_na(day, gender) %>%
+        dplyr::group_by(gender, day, name) %>%
+        dplyr::summarise(dplyr::across(value,
+                                       summary_fn,
+                                       na.rm = TRUE)) %>%
+        dplyr::mutate(dplyr::across(dplyr::starts_with("value"),
+                                    round, digits = 2)) %>%
+        dplyr::ungroup() %>%
+        tidyr::pivot_wider(names_from = day,
+                           values_from = dplyr::starts_with("value"))
+    return(daily_summary)
+}
+
+
+
