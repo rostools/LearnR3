@@ -14,48 +14,7 @@ library(fs)
 library(purrr)
 source(here("R/functions.R"))
 options(dplyr.summarise.inform = FALSE)
+load(here("data/mmash.rda"))
 ```
-
-## Using regex for user ID
-
-```{r}
-user_info_df <- import_multiple_files("user_info.csv", import_user_info)
-saliva_df <- import_multiple_files("saliva.csv", import_saliva)
-rr_df <- import_multiple_files("RR.csv", import_rr)
-actigraph_df <- import_multiple_files("Actigraph.csv", import_actigraph)
-
-summarised_rr_df <- rr_df %>% 
-    group_by(user_id, day) %>% 
-    summarise(across(ibi_s, list(mean = mean, sd = sd), na.rm = TRUE))
-
-summarised_actigraph_df <- actigraph_df %>% 
-    group_by(user_id, day) %>% 
-    # These statistics will probably be different for you
-    summarise(across(hr, list(mean = mean, sd = sd), na.rm = TRUE))
-```
-
-```{r}
-saliva_with_day_df <- saliva_df %>% 
-    mutate(day = case_when(
-        samples == "before sleep" ~ 1,
-        samples == "wake up" ~ 2
-    ))
-saliva_with_day_df
-```
-
-```{r}
-combined_data <- reduce(
-    list(user_info_df, saliva_with_day_df,
-         summarised_rr_df),
-    full_join
-)
-combined_data
-```
-
-```{r}
-
-```
-
-
 
 
