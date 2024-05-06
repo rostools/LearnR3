@@ -125,12 +125,39 @@ user_1_actigraph_data <- read_csv(
 #'
 #' @return Num1 and num2 added
 add_numbers <- function(num1, num2) {
-  
   added <- num1 + num2
-  
+
   return(added)
 }
 
 add_numbers(10, 20)
 ```
 
+## Import the user data with a function
+
+```{r}
+#' Import MMASH user info data file
+#'
+#' @param file_path Path to user info data file.
+#'
+#' @return Outputs a data frame/tibble
+import_user_info <- function(file_path) {
+  info_data <- read_csv(
+    file_path,
+    col_select = -1,
+    col_types = cols(
+      col_skip(),
+      gender = col_character(),
+      weight = col_double(),
+      height = col_double(),
+      age = col_double()
+    ),
+    name_repair = snakecase::to_snake_case
+  )
+
+  return(info_data)
+}
+
+import_user_info(here("data-raw/mmash/user_1/user_info.csv"))
+import_user_info(here("data-raw/mmash/user_2/user_info.csv"))
+```
