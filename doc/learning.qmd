@@ -1,6 +1,6 @@
 ---
 title: "Draft Quarto document"
-author: "Your Name"
+author: "Rostools"
 format: html
 ---
 
@@ -114,5 +114,23 @@ user_1_actigraph_data <- read_csv(
   ),
   name_repair = snakecase::to_snake_case
 )
+```
+
+## Making a function
+```{r}
+#' Function to add two numbers together.
+#'
+#' @param num1 First number to be added
+#' @param num2 Second number to be added
+#'
+#' @return Num1 and num2 added
+add_numbers <- function(num1, num2) {
+  
+  added <- num1 + num2
+  
+  return(added)
+}
+
+add_numbers(10, 20)
 ```
 
