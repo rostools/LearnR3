@@ -8,9 +8,32 @@ format: html
 
 ```{r setup}
 #| include: false
+library(tidyverse)
+library(here)
 ```
+
+## Importing raw data
 
 ```{r}
 # Code chunk
+user_1_info_file <- here("data-raw/mmash/user_1/user_info.csv")
+user_1_info_data <- read_csv(
+  user_1_info_file,
+  col_select = -1,
+  name_repair = snakecase::to_snake_case
+)
+spec(user_1_info_data)
+user_1_info_data <- read_csv(
+  user_1_info_file,
+  col_select = -1,
+  col_types = cols(
+    col_skip(),
+    gender = col_character(),
+    weight = col_double(),
+    height = col_double(),
+    age = col_double()
+  ),
+  name_repair = snakecase::to_snake_case
+)
+spec(user_1_info_data)
 ```
-
