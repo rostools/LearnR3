@@ -105,250 +105,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="header-1" class="level2">
 <h2 class="anchored" data-anchor-id="header-1">Header 1</h2>
-</section>
-<section id="importing-raw-data" class="level2">
-<h2 class="anchored" data-anchor-id="importing-raw-data">Importing raw data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Code chunk</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>user_1_info_file <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"data-raw/mmash/user_1/user_info.csv"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>user_1_info_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  user_1_info_file,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_select =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">name_repair =</span> snakecase<span class="sc">::</span>to_snake_case</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 1 Columns: 4
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (1): gender
-dbl (3): weight, height, age
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spec</span>(user_1_info_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>user_info_df <span class="ot">&lt;-</span> <span class="fu">import_multiple_files</span>(<span class="st">"user_info.csv"</span>, import_user_info)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>user_info_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>cols(
-  col_skip(),
-  gender = col_character(),
-  weight = col_double(),
-  height = col_double(),
-  age = col_double()
-)</code></pre>
+<pre><code># A tibble: 22 × 5
+   file_path_id                                       gender weight height   age
+   &lt;chr&gt;                                              &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+ 1 /Users/au546191/Desktop/LearnR3/data-raw/mmash/us… M          65    169    29
+ 2 /Users/au546191/Desktop/LearnR3/data-raw/mmash/us… M          85    180    27
+ 3 /Users/au546191/Desktop/LearnR3/data-raw/mmash/us… M         115    186    27
+ 4 /Users/au546191/Desktop/LearnR3/data-raw/mmash/us… M          67    170    27
+ 5 /Users/au546191/Desktop/LearnR3/data-raw/mmash/us… M          74    180    25
+ 6 /Users/au546191/Desktop/LearnR3/data-raw/mmash/us… M          64    171    27
+ 7 /Users/au546191/Desktop/LearnR3/data-raw/mmash/us… M          80    180    24
+ 8 /Users/au546191/Desktop/LearnR3/data-raw/mmash/us… M          67    176    27
+ 9 /Users/au546191/Desktop/LearnR3/data-raw/mmash/us… M          60    175    24
+10 /Users/au546191/Desktop/LearnR3/data-raw/mmash/us… M          80    180     0
+# ℹ 12 more rows</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>user_1_info_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  user_1_info_file,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_select =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">cols</span>(</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">col_skip</span>(),</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">gender =</span> <span class="fu">col_character</span>(),</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">weight =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">height =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">age =</span> <span class="fu">col_double</span>()</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">name_repair =</span> snakecase<span class="sc">::</span>to_snake_case</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">spec</span>(user_1_info_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>saliva_df <span class="ot">&lt;-</span> <span class="fu">import_multiple_files</span>(<span class="st">"saliva.csv"</span>, import_saliva)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>saliva_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>cols(
-  NA = col_skip(),
-  gender = col_character(),
-  weight = col_double(),
-  height = col_double(),
-  age = col_double()
-)</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>user_1_saliva_file <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"data-raw/mmash/user_1/saliva.csv"</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>user_1_saliva_data_prep <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  user_1_saliva_file,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_select =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">name_repair =</span> snakecase<span class="sc">::</span>to_snake_case</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 2 Columns: 3
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (1): samples
-dbl (2): cortisol_norm, melatonin_norm
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spec</span>(user_1_saliva_data_prep)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>cols(
-  col_skip(),
-  samples = col_character(),
-  cortisol_norm = col_double(),
-  melatonin_norm = col_double()
-)</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>user_1_saliva_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  user_1_saliva_file,</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_select =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">cols</span>(</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">col_skip</span>(),</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">samples =</span> <span class="fu">col_character</span>(),</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">cortisol_norm =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">melatonin_norm =</span> <span class="fu">col_double</span>()</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">name_repair =</span> snakecase<span class="sc">::</span>to_snake_case</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="importing-larger-datasets" class="level2">
-<h2 class="anchored" data-anchor-id="importing-larger-datasets">Importing larger datasets</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>user_1_rr_file <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"data-raw/mmash/user_1/RR.csv"</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>user_1_rr_data_prep <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  user_1_rr_file,</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_select =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">name_repair =</span> snakecase<span class="sc">::</span>to_snake_case,</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_max =</span> <span class="dv">100</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 100 Columns: 3
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-dbl  (2): ibi_s, day
-time (1): time
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spec</span>(user_1_rr_data_prep)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>cols(
-  col_skip(),
-  ibi_s = col_double(),
-  day = col_double(),
-  time = col_time(format = "")
-)</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>user_1_rr_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  user_1_rr_file,</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_select =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">name_repair =</span> snakecase<span class="sc">::</span>to_snake_case,</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">cols</span>(</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">col_skip</span>(),</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">ibi_s =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">day =</span> <span class="fu">col_integer</span>(),</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">time =</span> <span class="fu">col_time</span>(<span class="at">format =</span> <span class="st">""</span>)</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use first 100 or so lines to get spec</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>user_1_actigraph_file <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"data-raw/mmash/user_1/Actigraph.csv"</span>)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>user_1_actigraph_data_prep <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  user_1_actigraph_file,</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_max =</span> <span class="dv">100</span>,</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_select =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">name_repair =</span> snakecase<span class="sc">::</span>to_snake_case</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 100 Columns: 12
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-dbl  (11): axis_1, axis_2, axis_3, steps, hr, inclinometer_off, inclinometer...
-time  (1): time
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spec</span>(user_1_actigraph_data_prep)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>cols(
-  col_skip(),
-  axis_1 = col_double(),
-  axis_2 = col_double(),
-  axis_3 = col_double(),
-  steps = col_double(),
-  hr = col_double(),
-  inclinometer_off = col_double(),
-  inclinometer_standing = col_double(),
-  inclinometer_sitting = col_double(),
-  inclinometer_lying = col_double(),
-  vector_magnitude = col_double(),
-  day = col_double(),
-  time = col_time(format = "")
-)</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>user_1_actigraph_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  user_1_actigraph_file,</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_select =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">cols</span>(</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">col_skip</span>(),</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis_1 =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis_2 =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis_3 =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">steps =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">hr =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">inclinometer_off =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">inclinometer_standing =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">inclinometer_sitting =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">inclinometer_lying =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">vector_magnitude =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">day =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">time =</span> <span class="fu">col_time</span>(<span class="at">format =</span> <span class="st">""</span>)</span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">name_repair =</span> snakecase<span class="sc">::</span>to_snake_case</span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="making-a-function" class="level2">
-<h2 class="anchored" data-anchor-id="making-a-function">Making a function</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Function to add two numbers together.</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param num1 First number to be added</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param num2 Second number to be added</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' @return Num1 and num2 added</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>add_numbers <span class="ot">&lt;-</span> <span class="cf">function</span>(num1, num2) {</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  added <span class="ot">&lt;-</span> num1 <span class="sc">+</span> num2</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(added)</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="fu">add_numbers</span>(<span class="dv">10</span>, <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 30</code></pre>
-</div>
-</div>
-</section>
-<section id="import-the-user-data-with-a-function" class="level2">
-<h2 class="anchored" data-anchor-id="import-the-user-data-with-a-function">Import the user data with a function</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">import_user_info</span>(<span class="fu">here</span>(<span class="st">"data-raw/mmash/user_1/user_info.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 4
-  gender weight height   age
-  &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-1 M          65    169    29</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">import_user_info</span>(<span class="fu">here</span>(<span class="st">"data-raw/mmash/user_2/user_info.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 4
-  gender weight height   age
-  &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-1 M          95    183    27</code></pre>
-</div>
-</div>
-</section>
-<section id="exercise-for-importing-the-saliva-data-as-a-function" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-for-importing-the-saliva-data-as-a-function">Exercise for importing the saliva data as a function</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test that this works</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">import_saliva</span>(<span class="fu">here</span>(<span class="st">"data-raw/mmash/user_1/saliva.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 3
-  samples      cortisol_norm melatonin_norm
-  &lt;chr&gt;                &lt;dbl&gt;          &lt;dbl&gt;
-1 before sleep        0.0341  0.0000000174 
-2 wake up             0.0779  0.00000000675</code></pre>
+<pre><code># A tibble: 42 × 4
+   file_path_id                             samples cortisol_norm melatonin_norm
+   &lt;chr&gt;                                    &lt;chr&gt;           &lt;dbl&gt;          &lt;dbl&gt;
+ 1 /Users/au546191/Desktop/LearnR3/data-ra… before…        0.0341  0.0000000174 
+ 2 /Users/au546191/Desktop/LearnR3/data-ra… wake up        0.0779  0.00000000675
+ 3 /Users/au546191/Desktop/LearnR3/data-ra… before…        0.0370  0.00000000867
+ 4 /Users/au546191/Desktop/LearnR3/data-ra… wake up        0.0197  0.00000000257
+ 5 /Users/au546191/Desktop/LearnR3/data-ra… before…        0.0406  0.00000000204
+ 6 /Users/au546191/Desktop/LearnR3/data-ra… wake up        0.0156  0.00000000965
+ 7 /Users/au546191/Desktop/LearnR3/data-ra… before…        0.156   0.00000000354
+ 8 /Users/au546191/Desktop/LearnR3/data-ra… wake up        0.145   0.00000000864
+ 9 /Users/au546191/Desktop/LearnR3/data-ra… before…        0.0123  0.00000000190
+10 /Users/au546191/Desktop/LearnR3/data-ra… wake up        0.0342  0.00000000230
+# ℹ 32 more rows</code></pre>
 </div>
 </div>
 </section>

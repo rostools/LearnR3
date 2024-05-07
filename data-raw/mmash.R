@@ -1,5 +1,7 @@
 library(here)
 library(fs)
+library(tidyverse)
+source(here("R/functions.R"))
 
 # Download
 mmash_link <- r3::mmash_data_link
@@ -25,3 +27,8 @@ file_delete(here(c(
   "data-raw/LICENSE.txt"
 )))
 file_move(here("data-raw/DataPaper"), here("data-raw/mmash"))
+
+# Import multiple files
+user_info_df <- import_multiple_files("user_info.csv", import_user_info)
+saliva_df <- import_multiple_files("saliva.csv", import_saliva)
+
