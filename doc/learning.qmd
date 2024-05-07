@@ -10,141 +10,18 @@ format: html
 #| include: false
 library(tidyverse)
 library(here)
+library(fs)
 source(here("R/functions.R"))
 ```
 
-## Importing raw data
-
 ```{r}
-# Code chunk
-user_1_info_file <- here("data-raw/mmash/user_1/user_info.csv")
-user_1_info_data <- read_csv(
-  user_1_info_file,
-  col_select = -1,
-  name_repair = snakecase::to_snake_case
-)
-spec(user_1_info_data)
-user_1_info_data <- read_csv(
-  user_1_info_file,
-  col_select = -1,
-  col_types = cols(
-    col_skip(),
-    gender = col_character(),
-    weight = col_double(),
-    height = col_double(),
-    age = col_double()
-  ),
-  name_repair = snakecase::to_snake_case
-)
-spec(user_1_info_data)
+user_info_files <- dir_ls(here("data-raw/mmash/"), 
+                          regexp ="user_info.csv", recurse = TRUE)
+user_info_files
 ```
 
 ```{r}
-user_1_saliva_file <- here("data-raw/mmash/user_1/saliva.csv")
-user_1_saliva_data_prep <- read_csv(
-  user_1_saliva_file,
-  col_select = -1,
-  name_repair = snakecase::to_snake_case
-)
-spec(user_1_saliva_data_prep)
-
-user_1_saliva_data <- read_csv(
-  user_1_saliva_file,
-  col_select = -1,
-  col_types = cols(
-    col_skip(),
-    samples = col_character(),
-    cortisol_norm = col_double(),
-    melatonin_norm = col_double()
-  ),
-  name_repair = snakecase::to_snake_case
-)
+user_info_df <- map(user_info_files, import_user_info) |> list_rbind(names_to = "file_path_id") 
+user_info_df
 ```
 
-## Importing larger datasets
-
-```{r}
-user_1_rr_file <- here("data-raw/mmash/user_1/RR.csv")
-user_1_rr_data_prep <- read_csv(
-  user_1_rr_file,
-  col_select = -1,
-  name_repair = snakecase::to_snake_case,
-  n_max = 100
-)
-spec(user_1_rr_data_prep)
-user_1_rr_data <- read_csv(
-  user_1_rr_file,
-  col_select = -1,
-  name_repair = snakecase::to_snake_case,
-  col_types = cols(
-    col_skip(),
-    ibi_s = col_double(),
-    day = col_integer(),
-    time = col_time(format = "")
-  )
-)
-```
-```{r}
-# Use first 100 or so lines to get spec
-user_1_actigraph_file <- here("data-raw/mmash/user_1/Actigraph.csv")
-user_1_actigraph_data_prep <- read_csv(
-  user_1_actigraph_file,
-  n_max = 100,
-  col_select = -1,
-  name_repair = snakecase::to_snake_case
-)
-spec(user_1_actigraph_data_prep)
-
-user_1_actigraph_data <- read_csv(
-  user_1_actigraph_file,
-  col_select = -1,
-  col_types = cols(
-    col_skip(),
-    axis_1 = col_double(),
-    axis_2 = col_double(),
-    axis_3 = col_double(),
-    steps = col_double(),
-    hr = col_double(),
-    inclinometer_off = col_double(),
-    inclinometer_standing = col_double(),
-    inclinometer_sitting = col_double(),
-    inclinometer_lying = col_double(),
-    vector_magnitude = col_double(),
-    day = col_double(),
-    time = col_time(format = "")
-  ),
-  name_repair = snakecase::to_snake_case
-)
-```
-
-## Making a function
-```{r}
-#' Function to add two numbers together.
-#'
-#' @param num1 First number to be added
-#' @param num2 Second number to be added
-#'
-#' @return Num1 and num2 added
-add_numbers <- function(num1, num2) {
-  added <- num1 + num2
-
-  return(added)
-}
-
-add_numbers(10, 20)
-```
-
-## Import the user data with a function
-
-```{r}
-import_user_info(here("data-raw/mmash/user_1/user_info.csv"))
-import_user_info(here("data-raw/mmash/user_2/user_info.csv"))
-```
-
-
-## Exercise for importing the saliva data as a function
-
-```{r}
-# Test that this works
-import_saliva(here("data-raw/mmash/user_1/saliva.csv"))
-```
