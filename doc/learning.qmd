@@ -23,6 +23,8 @@ saliva_df <- import_multiple_files("saliva.csv", import_saliva)
 saliva_df |> summarise(across(c(cortisol_norm, melatonin_norm), list(mean = mean)))
 ```
 
+## Summarise RR
+
 ```{r}
 rr_df <- import_multiple_files("RR.csv", import_rr)
 
@@ -34,4 +36,20 @@ summarised_rr_df <- rr_df |>
   )), .groups = "drop")
 
 summarised_rr_df
+```
+
+## Exercise: Summarise  Actigraph 
+
+```{r}
+actigraph_df <- import_multiple_files("Actigraph.csv", import_actigraph)
+summarised_actigraph_df <- actigraph_df |>
+  group_by(file_path_id, day) |>
+  # These statistics will probably be different for you
+  summarise(
+    across(hr, list(
+      mean = \(x) mean(x, na.rm = TRUE),
+      sd = \(x) sd(x, na.rm = TRUE)
+    )),
+    .groups = "drop"
+  )
 ```
