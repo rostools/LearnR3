@@ -3,6 +3,7 @@ Package: LearnR3
 Type: Project
 Version: 0.0.1
 Imports:
+    dplyr,
     fs,
     here,
     knitr,
