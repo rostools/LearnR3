@@ -36,14 +36,14 @@ actigraph_df <- import_multiple_files("Actigraph.csv", import_actigraph)
 
 # Summarise RR and actigraph data
 summarised_rr_df <- rr_df |>
-  group_by(file_path_id, day) |>
+  group_by(user_id, day) |>
   summarise(across(ibi_s, list(
     mean = \(x) mean(x, na.rm = TRUE),
     sd = \(x) sd(x, na.rm = TRUE)
   )), .groups = "drop")
 
 summarised_actigraph_df <- actigraph_df |>
-  group_by(file_path_id, day) |>
+  group_by(user_id, day) |>
   # These statistics will probably be different for you
   summarise(
     across(hr, list(

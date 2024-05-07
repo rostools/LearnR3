@@ -107,6 +107,27 @@ import_multiple_files <- function(file_pattern, import_function) {
   )
 
   combined_data <- purrr::map(data_files, import_function) |>
-    purrr::list_rbind(names_to = "file_path_id")
+    purrr::list_rbind(names_to = "file_path_id") |>
+    extract_user_id()
   return(combined_data)
+}
+
+
+#' Extract user ID from data with file path column.
+#'
+#' @param imported_data Data with `file_path_id` column.
+#'
+#' @return A data.frame/tibble.
+#'
+extract_user_id <- function(imported_data) {
+  extracted_id <- imported_data |>
+    dplyr::mutate(
+      user_id = stringr::str_extract(
+        file_path_id,
+        "user_[1-9][0-9]?"
+      ),
+      .before = file_path_id
+    ) |>
+    dplyr::select(-file_path_id)
+  return(extracted_id)
 }

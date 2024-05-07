@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.31">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -34,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -105,42 +105,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="header-1" class="level2">
 <h2 class="anchored" data-anchor-id="header-1">Header 1</h2>
+</section>
+<section id="using-regex-for-user" class="level2">
+<h2 class="anchored" data-anchor-id="using-regex-for-user">Using regex for user</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>user_info_df <span class="ot">&lt;-</span> <span class="fu">import_multiple_files</span>(<span class="st">"user_info.csv"</span>, import_user_info)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>user_info_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>user_info_df <span class="ot">&lt;-</span> <span class="fu">import_multiple_files</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"user_info.csv"</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  import_user_info</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># This tests that it works:</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">extract_user_id</span>(user_info_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 22 × 5
-   file_path_id                                       gender weight height   age
-   &lt;chr&gt;                                              &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
- 1 /Users/au546191/Desktop/LearnR3/data-raw/mmash/us… M          65    169    29
- 2 /Users/au546191/Desktop/LearnR3/data-raw/mmash/us… M          85    180    27
- 3 /Users/au546191/Desktop/LearnR3/data-raw/mmash/us… M         115    186    27
- 4 /Users/au546191/Desktop/LearnR3/data-raw/mmash/us… M          67    170    27
- 5 /Users/au546191/Desktop/LearnR3/data-raw/mmash/us… M          74    180    25
- 6 /Users/au546191/Desktop/LearnR3/data-raw/mmash/us… M          64    171    27
- 7 /Users/au546191/Desktop/LearnR3/data-raw/mmash/us… M          80    180    24
- 8 /Users/au546191/Desktop/LearnR3/data-raw/mmash/us… M          67    176    27
- 9 /Users/au546191/Desktop/LearnR3/data-raw/mmash/us… M          60    175    24
-10 /Users/au546191/Desktop/LearnR3/data-raw/mmash/us… M          80    180     0
+   user_id gender weight height   age
+   &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+ 1 user_1  M          65    169    29
+ 2 user_10 M          85    180    27
+ 3 user_11 M         115    186    27
+ 4 user_12 M          67    170    27
+ 5 user_13 M          74    180    25
+ 6 user_14 M          64    171    27
+ 7 user_15 M          80    180    24
+ 8 user_16 M          67    176    27
+ 9 user_17 M          60    175    24
+10 user_18 M          80    180     0
 # ℹ 12 more rows</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>saliva_df <span class="ot">&lt;-</span> <span class="fu">import_multiple_files</span>(<span class="st">"saliva.csv"</span>, import_saliva)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>saliva_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 42 × 4
-   file_path_id                             samples cortisol_norm melatonin_norm
-   &lt;chr&gt;                                    &lt;chr&gt;           &lt;dbl&gt;          &lt;dbl&gt;
- 1 /Users/au546191/Desktop/LearnR3/data-ra… before…        0.0341  0.0000000174 
- 2 /Users/au546191/Desktop/LearnR3/data-ra… wake up        0.0779  0.00000000675
- 3 /Users/au546191/Desktop/LearnR3/data-ra… before…        0.0370  0.00000000867
- 4 /Users/au546191/Desktop/LearnR3/data-ra… wake up        0.0197  0.00000000257
- 5 /Users/au546191/Desktop/LearnR3/data-ra… before…        0.0406  0.00000000204
- 6 /Users/au546191/Desktop/LearnR3/data-ra… wake up        0.0156  0.00000000965
- 7 /Users/au546191/Desktop/LearnR3/data-ra… before…        0.156   0.00000000354
- 8 /Users/au546191/Desktop/LearnR3/data-ra… wake up        0.145   0.00000000864
- 9 /Users/au546191/Desktop/LearnR3/data-ra… before…        0.0123  0.00000000190
-10 /Users/au546191/Desktop/LearnR3/data-ra… wake up        0.0342  0.00000000230
-# ℹ 32 more rows</code></pre>
 </div>
 </div>
 </section>
@@ -182,18 +172,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -225,7 +204,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -233,7 +234,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
