@@ -31,4 +31,24 @@ file_move(here("data-raw/DataPaper"), here("data-raw/mmash"))
 # Import multiple files
 user_info_df <- import_multiple_files("user_info.csv", import_user_info)
 saliva_df <- import_multiple_files("saliva.csv", import_saliva)
+rr_df <- import_multiple_files("RR.csv", import_rr)
+actigraph_df <- import_multiple_files("Actigraph.csv", import_actigraph)
 
+# Summarise RR and actigraph data
+summarised_rr_df <- rr_df |>
+  group_by(file_path_id, day) |>
+  summarise(across(ibi_s, list(
+    mean = \(x) mean(x, na.rm = TRUE),
+    sd = \(x) sd(x, na.rm = TRUE)
+  )), .groups = "drop")
+
+summarised_actigraph_df <- actigraph_df |>
+  group_by(file_path_id, day) |>
+  # These statistics will probably be different for you
+  summarise(
+    across(hr, list(
+      mean = \(x) mean(x, na.rm = TRUE),
+      sd = \(x) sd(x, na.rm = TRUE)
+    )),
+    .groups = "drop"
+  )
