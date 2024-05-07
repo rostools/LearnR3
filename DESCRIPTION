@@ -3,8 +3,14 @@ Package: LearnR3
 Type: Project
 Version: 0.0.1
 Imports:
+    fs,
+    here,
     knitr,
-    rmarkdown
+    readr,
+    rmarkdown,
+    snakecase
 Encoding: UTF-8
 URL: https://github.com/rostools/LearnR3
 BugReports: https://github.com/rostools/LearnR3/issues
+Depends: 
+    tidyverse
