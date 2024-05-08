@@ -8,7 +8,7 @@ mmash_link <- r3::mmash_data_link
 # download.file(mmash_link, destfile = here("data-raw/mmash-data.zip"))
 
 # Remove leftover folder so unzipping is always clean
-# dir_delete(here("data-raw/mmash"))
+dir_delete(here("data-raw/mmash"))
 
 # Unzip
 unzip(here("data-raw/mmash-data.zip"),
@@ -52,3 +52,19 @@ summarised_actigraph_df <- actigraph_df |>
     )),
     .groups = "drop"
   )
+
+saliva_with_day_df <- saliva_df |>
+  mutate(day = case_when(
+    samples == "before sleep" ~ 1,
+    samples == "wake up" ~ 2
+  ))
+
+mmash <- list(
+  user_info_df,
+  saliva_with_day_df,
+  summarised_rr_df,
+  summarised_actigraph_df
+) |>
+  reduce(full_join)
+
+usethis::use_data(mmash, overwrite = TRUE)
