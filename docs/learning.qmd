@@ -27,3 +27,21 @@ cgm_101 <- here("data-raw/dime/cgm/101.csv") |>
     n_max = 100
   )
 ```
+
+## Making a function that adds numbers
+
+```{r}
+#' Add two numbers together
+#'
+#' @param num1 A number
+#' @param num2 A number
+#'
+#' @returns Returns the dum of the numbers
+#'
+add_numbers <- function(num1, num2) {
+  added <- num1 + num2
+  return(added)
+}
+
+add_numbers(1, 2)
+```
