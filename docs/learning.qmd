@@ -28,3 +28,47 @@ cgm_101 <- here("data-raw/dime/cgm/101.csv") |>
   )
 
 ```
+
+## Making a function that adds numbers
+
+```{r}
+#' Add two numbers together
+#'
+#' @param num1 A number
+#' @param num2 A number
+#'
+#' @returns Returns the dum of the numbers
+#'
+add_numbers <- function(num1, num2) {
+  added <- num1 + num2
+  return(added)
+}
+
+add_numbers(1, 2)
+```
+
+## Import 101's cgm data with a function
+
+```{r}
+#' Import one participants cgm
+#'
+#' @param file_path Path to file
+#'
+#' @returns Returns a data frame
+#'
+import_cgm <- function(file_path) {
+  cgm <- file_path |>
+    read_csv(
+      show_col_types = FALSE,
+      name_repair = to_snake_case,
+      n_max = 100
+    )
+  return(cgm)
+}
+
+here("data-raw/dime/cgm/101.csv") |>
+  import_cgm()
+
+here("data-raw/dime/cgm/102.csv") |>
+  import_cgm()
+```
