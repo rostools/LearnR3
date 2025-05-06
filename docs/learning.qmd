@@ -71,3 +71,33 @@ here("data-raw/dime/cgm/101.csv") |>
 here("data-raw/dime/cgm/102.csv") |>
   import_cgm()
 ```
+
+## Import DIME data function
+
+```{r}
+#' Import data from the DIME study dataset.
+#'
+#' @param file_path Path to the CSV file.
+#'
+#' @returns A data frame
+#'
+import_dime <- function(file_path) {
+  data <- file_path |>
+    readr::read_csv(
+      show_col_types = FALSE,
+      name_repair = snakecase::to_snake_case,
+      n_max = 100
+    )
+
+  return(data)
+}
+```
+
+
+```{r}
+here("data-raw/dime/cgm/101.csv") |>
+  import_dime()
+
+here("data-raw/dime/sleep/101.csv") |>
+  import_dime()
+```
