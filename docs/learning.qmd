@@ -103,3 +103,14 @@ cgm_data <- cgm_files |>
 
 cgm_data
 ```
+
+
+## Exercise: Convert map to function and use on sleep
+
+```{r}
+
+```
+
+
+
+
