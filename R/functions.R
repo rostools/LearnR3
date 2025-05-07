@@ -15,8 +15,6 @@ import_dime <- function(file_path) {
   return(data)
 }
 
-
-
 #' Import all DIME CSV files in a folder into one data frame.
 #'
 #' @param folder_path The path to the folder that has the CSV files.
@@ -31,4 +29,42 @@ import_csv_files <- function(folder_path) {
     purrr::map(import_dime) |>
     purrr::list_rbind(names_to = "file_path_id")
   return(data)
+}
+
+#' Get the participant ID from the file path column.
+#'
+#' @param data Data with `file_path_id` column.
+#'
+#' @return A data.frame/tibble.
+#'
+get_participant_id <- function(data) {
+  data_with_id <- data |>
+    dplyr::mutate(
+      id = stringr::str_extract(
+        file_path_id,
+        "[:digit:]+\\.csv$"
+      ) |>
+        stringr::str_remove("\\.csv$") |>
+        as.integer(),
+      .before = file_path_id
+    ) |>
+    dplyr::select(-file_path_id)
+  return(data_with_id)
+}
+
+#' Prepare the date columns in DIME CGM and sleep data for joining.
+#'
+#' @param data The data that has the datetime column.
+#' @param column The datetime column to convert to date and hour.
+#'
+#' @returns A tibble/data.frame
+#'
+prepare_dates <- function(data, column) {
+  prepared_dates <- data |>
+    dplyr::mutate(
+      date = lubridate::as_date({{ column }}),
+      hour = lubridate::hour({{ column }}),
+      .before = {{ column }}
+    )
+  return(prepared_dates)
 }

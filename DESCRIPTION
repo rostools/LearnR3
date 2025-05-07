@@ -8,7 +8,9 @@ BugReports: https://github.com/rostools/LearnR3/issues
 Imports: 
     fs,
     here,
+    lubridate,
     purrr,
-    snakecase
+    snakecase,
+    stringr
 Depends: 
     tidyverse

@@ -11,8 +11,14 @@ format: html
 library(tidyverse)
 library(here)
 library(snakecase)
+library(lubridate)
 library(fs)
+library(stringr)
 source(here("R/functions.R"))
+cgm_data <- here("data-raw/dime/cgm") |>
+  import_csv_files() |>
+  get_participant_id() |>
+  prepare_dates(device_timestamp)
 ```
 
 ```{r}
@@ -74,11 +80,7 @@ here("data-raw/dime/cgm/102.csv") |>
   import_cgm()
 ```
 
-## Import DIME data function
-
-```{r}
-```
-
+## Import DIME data
 
 ```{r}
 here("data-raw/dime/cgm/101.csv") |>
@@ -95,22 +97,17 @@ cgm_files <- here("data-raw/dime/cgm/") |>
   dir_ls(glob = "*.csv")
 
 cgm_files
-
-
-cgm_data <- cgm_files |>
-  map(import_dime) |>
-  list_rbind(names_to = "file_path_id")
-
-cgm_data
 ```
 
-
-## Exercise: Convert map to function and use on sleep
+## Using regex for ID extraction
 
 ```{r}
-
 ```
 
+## Working with dates
 
+```{r}
+```
 
-
+```{r}
+```
