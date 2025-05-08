@@ -15,10 +15,20 @@ library(lubridate)
 library(fs)
 library(stringr)
 source(here("R/functions.R"))
+
 cgm_data <- here("data-raw/dime/cgm") |>
   import_csv_files() |>
   clean_cgm() 
-```
+
+sleep_data <- here("data-raw/dime/sleep") |> 
+  import_csv_files() |> 
+  clean_sleep()
+
+participant_details <-
+  here("data-raw/dime/participant_details.csv") |> 
+  import_dime() |> 
+  clean_participant_details()
+``` 
 
 ```{r}
 # Code chunk
@@ -113,26 +123,19 @@ cgm_files
 
 ## Summaring with across()
 
-```{r}
-cgm_data |>
-  summarise(across(glucose, list(
-    mean = mean,
-    sd = sd,
-    median = median
-  )))
-```
-
 ## Summarising by groups
 
 ```{r}
-cgm_data |>
-  select(-contains("timestamp"), -contains("datetime")) |>
-  group_by(pick(-glucose)) |>
-  summarise(
-    across(glucose, list(
-      mean = mean,
-      sd = sd
-    )),
-    .groups = "drop"
-  )
+
 ```
+
+## Pivot longer
+
+```{r}
+
+```
+
+```{r}
+
+```
+

@@ -74,10 +74,83 @@ prepare_dates <- function(data, column) {
 #' @param data The CGM dataset.
 #'
 #' @returns A cleaner data frame.
+#'
 clean_cgm <- function(data) {
   cleaned <- data |>
     get_participant_id() |>
     prepare_dates(device_timestamp) |>
-    dplyr::rename(glucose = historic_glucose_mmol_l)
+    dplyr::rename(glucose = historic_glucose_mmol_l) |>
+    # You can decide what functions to summarise by.
+    summarise_column(glucose, list(mean = mean, sd = sd))
   return(cleaned)
+}
+
+#' Summarise a single column based one or more functions.
+#'
+#' @param data Either the CGM or sleep data in DIME.
+#' @param column The column we want to summarise.
+#' @param functions One or more functions to apply to the column. If more than one added, use list()
+#'
+#' @returns
+summarise_column <- function(data, column, functions) {
+  summarized_data <- data |>
+    dplyr::select(-tidyselect::contains("timestamp"), -tidyselect::contains("datetime")) |>
+    dplyr::group_by(dplyr::pick(-{{ column }})) |>
+    dplyr::summarise(
+      dplyr::across(
+        {{ column }},
+        functions
+      ),
+      .groups = "drop"
+    )
+  return(summarized_data)
+}
+
+#' Clean and prepare the sleep data for joining.
+#'
+#' @param data The sleep dataset.
+#'
+#' @returns A cleaner data frame.
+#'
+clean_sleep <- function(data) {
+  cleaned <- data |>
+    get_participant_id() |>
+    dplyr::rename(datetime = date) |>
+    prepare_dates(datetime) |>
+    summarise_column(seconds, list(sum = sum)) |>
+    sleep_types_to_wider()
+  return(cleaned)
+}
+
+
+#' Convert the participant details data to long and clean it up.
+#'
+#' @param data The DIME participant details data.
+#'
+#' @returns A data frame
+clean_participant_details <- function(data) {
+  cleaned <- data |>
+    tidyr::pivot_longer(tidyselect::ends_with("date"), names_to = NULL, values_to = "date") |>
+    dplyr::group_by(dplyr::pick(-date)) |>
+    tidyr::complete(
+      date = seq(min(date), max(date), by = "1 day")
+    )
+
+  return(cleaned)
+}
+
+#' Convert the sleep types to wide format.
+#'
+#' @param data The cleaned DIME sleep data.
+#'
+#' @returns A data frame.
+#'
+sleep_types_to_wider <- function(data) {
+  wider <- data |>
+    tidyr::pivot_wider(
+      names_from = sleep_type,
+      names_prefix = "seconds_",
+      values_from = seconds_sum
+    )
+  return(wider)
 }
