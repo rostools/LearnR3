@@ -28,6 +28,12 @@ participant_details <-
   here("data-raw/dime/participant_details.csv") |> 
   import_dime() |> 
   clean_participant_details()
+
+dime_data <- participant_details |> 
+  full_join(cgm_data) |> 
+  full_join(sleep_data)
+
+write_csv(dime_data, here("data/dime.csv"))
 ``` 
 
 ```{r}
@@ -133,6 +139,22 @@ cgm_files
 
 ```{r}
 
+```
+
+```{r}
+
+```
+
+## Joining datasets
+
+```{r}
+participant_details |> 
+  left_join(cgm_data)
+```
+
+```{r}
+participant_details |> 
+  right_join(cgm_data)
 ```
 
 ```{r}
