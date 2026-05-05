@@ -13,6 +13,7 @@ library(snakecase)
 ```
 
 ## Importing new data
+
 ```{r}
 here("data-raw/nurses-stress/stress/5C/5C_1586886626/HR.csv.gz") |>
   read_csv(
@@ -95,6 +96,8 @@ here("data-raw/nurses-stress/stress/5C/5C_1586886712/HR.csv.gz") |>
 ```
 
 ```{r}
+#| output: false
+
 #' Read in one nurses' stress data file.
 #'
 #' @param file_path Path to the data file.
@@ -104,12 +107,13 @@ here("data-raw/nurses-stress/stress/5C/5C_1586886712/HR.csv.gz") |>
 #'
 read <- function(file_path, max_rows = 100) {
   data <- file_path |>
-    read_csv(
+    readr::read_csv(
       show_col_types = FALSE,
-      name_repair = to_snake_case,
+      name_repair = snakecase::to_snake_case,
       n_max = max_rows
     )
   return(data)
 }
+here("data-raw/nurses-stress/stress/5C/5C_1586886712/HR.csv.gz") |>
+  read()
 ```
-
