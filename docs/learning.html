@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.36">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,9 +10,6 @@
 
 <title>Draft Quarto document</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -65,14 +62,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="learning_files/libs/clipboard/clipboard.min.js"></script>
 <script src="learning_files/libs/quarto-html/quarto.js" type="module"></script>
 <script src="learning_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="learning_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="learning_files/libs/quarto-html/popper.min.js"></script>
 <script src="learning_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="learning_files/libs/quarto-html/anchor.min.js"></script>
 <link href="learning_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="learning_files/libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="learning_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="learning_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="learning_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="learning_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="learning_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -126,9 +124,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>here() starts at /Users/isabellvictoriastrandbyernst/Desktop/LearnR3</code></pre>
+<pre><code>here() starts at /Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(snakecase)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fs)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"R/functions.R"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="importing-new-data" class="level2">
@@ -140,148 +139,71 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">name_repair =</span> to_snake_case,</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_max =</span> <span class="dv">100</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 37 × 2
-   collection_datetime    hr
-   &lt;dttm&gt;              &lt;dbl&gt;
- 1 2020-04-14 17:50:46  80.4
- 2 2020-04-14 17:50:50  81.6
- 3 2020-04-14 17:50:55  81.8
- 4 2020-04-14 17:51:08  88.8
- 5 2020-04-14 17:50:44  79.3
- 6 2020-04-14 17:50:52  81.8
- 7 2020-04-14 17:50:48  81.2
- 8 2020-04-14 17:50:53  81.7
- 9 2020-04-14 17:50:56  82  
-10 2020-04-14 17:50:58  82.8
-# ℹ 27 more rows</code></pre>
-</div>
 </div>
 </section>
 <section id="exercise-reading-other-files" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-reading-other-files">Exercise: reading other files</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"data-raw/nurses-stress/stress/5C/5C_1586886712/HR.csv.gz"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">show_col_types =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">name_repair =</span> to_snake_case</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 23,517 × 2
-   collection_datetime    hr
-   &lt;dttm&gt;              &lt;dbl&gt;
- 1 2020-04-14 17:52:12  70  
- 2 2020-04-14 17:52:42  76.8
- 3 2020-04-14 17:52:51  79.3
- 4 2020-04-14 17:53:12  89.4
- 5 2020-04-14 17:53:32 101. 
- 6 2020-04-14 17:53:35 102. 
- 7 2020-04-14 17:53:42 102. 
- 8 2020-04-14 17:53:45 102. 
- 9 2020-04-14 17:53:52 100.0
-10 2020-04-14 17:54:03  94.5
-# ℹ 23,507 more rows</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"data-raw/nurses-stress/stress/5C/5C_1586886712/HR.csv.gz"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">show_col_types =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">name_repair =</span> to_snake_case,</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_max =</span> <span class="dv">100</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 100 × 2
-   collection_datetime    hr
-   &lt;dttm&gt;              &lt;dbl&gt;
- 1 2020-04-14 17:52:12  70  
- 2 2020-04-14 17:52:42  76.8
- 3 2020-04-14 17:52:51  79.3
- 4 2020-04-14 17:53:12  89.4
- 5 2020-04-14 17:53:32 101. 
- 6 2020-04-14 17:53:35 102. 
- 7 2020-04-14 17:53:42 102. 
- 8 2020-04-14 17:53:45 102. 
- 9 2020-04-14 17:53:52 100.0
-10 2020-04-14 17:54:03  94.5
-# ℹ 90 more rows</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"data-raw/nurses-stress/stress/6B/6B_1587569373/EDA.csv.gz"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">show_col_types =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">name_repair =</span> to_snake_case</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 15,617 × 2
-   collection_datetime      eda
-   &lt;dttm&gt;                 &lt;dbl&gt;
- 1 2020-04-22 15:29:39 0.000961
- 2 2020-04-22 15:29:43 0.000640
- 3 2020-04-22 15:29:47 0       
- 4 2020-04-22 15:29:48 0       
- 5 2020-04-22 15:29:51 0       
- 6 2020-04-22 15:30:23 0.00192 
- 7 2020-04-22 15:31:06 0.486   
- 8 2020-04-22 15:31:26 0.504   
- 9 2020-04-22 15:32:00 0.568   
-10 2020-04-22 15:32:02 0.570   
-# ℹ 15,607 more rows</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"data-raw/nurses-stress/stress/6B/6B_1587569373/EDA.csv.gz"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">show_col_types =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">name_repair =</span> to_snake_case,</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_max =</span> <span class="dv">100</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 100 × 2
-   collection_datetime      eda
-   &lt;dttm&gt;                 &lt;dbl&gt;
- 1 2020-04-22 15:29:39 0.000961
- 2 2020-04-22 15:29:43 0.000640
- 3 2020-04-22 15:29:47 0       
- 4 2020-04-22 15:29:48 0       
- 5 2020-04-22 15:29:51 0       
- 6 2020-04-22 15:30:23 0.00192 
- 7 2020-04-22 15:31:06 0.486   
- 8 2020-04-22 15:31:26 0.504   
- 9 2020-04-22 15:32:00 0.568   
-10 2020-04-22 15:32:02 0.570   
-# ℹ 90 more rows</code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"data-raw/nurses-stress/stress/5C/5C_1586886712/HR.csv.gz"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">show_col_types =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">name_repair =</span> to_snake_case</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"data-raw/nurses-stress/stress/5C/5C_1586886712/HR.csv.gz"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">show_col_types =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">name_repair =</span> to_snake_case,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_max =</span> <span class="dv">100</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"data-raw/nurses-stress/stress/6B/6B_1587569373/EDA.csv.gz"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">show_col_types =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">name_repair =</span> to_snake_case</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"data-raw/nurses-stress/stress/6B/6B_1587569373/EDA.csv.gz"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">show_col_types =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">name_repair =</span> to_snake_case,</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_max =</span> <span class="dv">100</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Add two numbers together.</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param num1 A number here.</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param num2 A number here.</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' @returns Returns the sum of two numbers</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>add_numbers <span class="ot">&lt;-</span> <span class="cf">function</span>(num1, num2) {</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  added <span class="ot">&lt;-</span> num1 <span class="sc">+</span> num2</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(added)</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Add two numbers together.</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param num1 A number here.</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param num2 A number here.</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' @returns Returns the sum of two numbers</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>add_numbers <span class="ot">&lt;-</span> <span class="cf">function</span>(num1, num2) {</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  added <span class="ot">&lt;-</span> num1 <span class="sc">+</span> num2</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(added)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Read in one nurses' stress data file.</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param file_path A path to a data file</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' @returns outputs a data frame / tibble</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>read <span class="ot">&lt;-</span> <span class="cf">function</span>(file_path) {</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  data <span class="ot">&lt;-</span> file_path <span class="sc">|&gt;</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">read_csv</span>(</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">show_col_types =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">name_repair =</span> to_snake_case,</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">n_max =</span> <span class="dv">100</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(data)</span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Read in one nurses' stress data file.</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param file_path A path to a data file</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' @returns outputs a data frame / tibble</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>read <span class="ot">&lt;-</span> <span class="cf">function</span>(file_path) {</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  data <span class="ot">&lt;-</span> file_path <span class="sc">|&gt;</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">read_csv</span>(</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">show_col_types =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">name_repair =</span> to_snake_case,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">n_max =</span> <span class="dv">100</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(data)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"data-raw/nurses-stress/stress/5C/5C_1586886626/HR.csv.gz"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"data-raw/nurses-stress/stress/5C/5C_1586886626/HR.csv.gz"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 37 × 2
+<pre><code># A tibble: 10 × 2
    collection_datetime    hr
    &lt;dttm&gt;              &lt;dbl&gt;
  1 2020-04-14 17:50:46  80.4
@@ -293,15 +215,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  7 2020-04-14 17:50:48  81.2
  8 2020-04-14 17:50:53  81.7
  9 2020-04-14 17:50:56  82  
-10 2020-04-14 17:50:58  82.8
-# ℹ 27 more rows</code></pre>
+10 2020-04-14 17:50:58  82.8</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"data-raw/nurses-stress/stress/5C/5C_1586886712/HR.csv.gz"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"data-raw/nurses-stress/stress/5C/5C_1586886712/HR.csv.gz"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 100 × 2
+<pre><code># A tibble: 10 × 2
    collection_datetime    hr
    &lt;dttm&gt;              &lt;dbl&gt;
  1 2020-04-14 17:52:12  70  
@@ -313,8 +234,737 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  7 2020-04-14 17:53:42 102. 
  8 2020-04-14 17:53:45 102. 
  9 2020-04-14 17:53:52 100.0
-10 2020-04-14 17:54:03  94.5
-# ℹ 90 more rows</code></pre>
+10 2020-04-14 17:54:03  94.5</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"data-raw/nurses-stress/stress/5C/5C_1586886712/HR.csv.gz"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="using-map" class="level2">
+<h2 class="anchored" data-anchor-id="using-map">Using map</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>hr_files <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"data-raw/nurses-stress/"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir_ls</span>(<span class="at">regexp =</span> <span class="st">"HR.csv.gz"</span>, <span class="at">recurse =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>hr_files</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1594140175/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1594149654/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1594213322/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1594220239/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1594238057/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1594298975/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1594311202/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1594325201/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1594378283/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1594380033/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1595334888/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1595347920/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1595360012/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1595425036/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1595433234/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1595446619/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1595592772/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1595600598/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1595604812/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1595608145/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1595854651/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1595857850/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1595862148/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1595866250/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1595869772/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1595871983/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1595940277/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1595947283/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1595953571/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1595970459/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1596027852/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1596037241/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1596204744/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1596219716/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1596222922/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1596546369/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1596547439/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1596551659/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1596564517/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1596634348/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1596636683/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1596648020/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/15/15_1596653112/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/5C/5C_1586886626/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/5C/5C_1586886712/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/5C/5C_1587297777/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/5C/5C_1587336033/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/5C/5C_1587338580/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/5C/5C_1587569014/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/5C/5C_1587593082/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/5C/5C_1587593875/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/5C/5C_1587649438/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/5C/5C_1587661745/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/5C/5C_1587674047/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/5C/5C_1588974475/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/5C/5C_1589028738/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/5C/5C_1589199819/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/5C/5C_1589199875/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/5C/5C_1589286789/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/5C/5C_1589298448/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/5C/5C_1589803857/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/5C/5C_1589889161/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/5C/5C_1592925628/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/5C/5C_1592925705/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/5C/5C_1592926305/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/5C/5C_1593006542/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/5C/5C_1593018203/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/5C/5C_1593018622/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/5C/5C_1593094946/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6B/6B_1587569373/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6B/6B_1587585327/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6B/6B_1587653438/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6B/6B_1587661095/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6B/6B_1587662477/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6B/6B_1588961203/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6B/6B_1588970444/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6B/6B_1589052301/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6B/6B_1589901451/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6B/6B_1590172247/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6B/6B_1590239123/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6B/6B_1592925729/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6B/6B_1592996203/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6B/6B_1593024104/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6B/6B_1593083317/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6B/6B_1593086670/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6B/6B_1593091155/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6B/6B_1593101741/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6B/6B_1593110897/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6B/6B_1593168956/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6B/6B_1593176942/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6B/6B_1593191957/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6B/6B_1593427701/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6B/6B_1593437366/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6B/6B_1593446044/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6B/6B_1593455714/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6B/6B_1593514692/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6B/6B_1593535767/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6D/6D_1594751512/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6D/6D_1594757863/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6D/6D_1594831043/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6D/6D_1594910470/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6D/6D_1594998483/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6D/6D_1595252734/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6D/6D_1595339521/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6D/6D_1595523837/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/6D/6D_1595604487/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1587212302/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1587228286/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1587298286/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1587326219/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1587556854/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1587583295/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1587643240/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1587734399/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1588977047/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1589022077/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1589025873/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1589055551/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1589141032/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1592752730/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1592925663/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1592926011/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1592926372/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1592933285/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1592941276/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1593091052/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1593101633/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1593104418/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1593115159/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1593177044/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1593192268/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1593203567/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1593436174/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1593439820/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1593450967/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1593521778/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1593527735/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1593534070/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1593547182/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1593551081/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1593609973/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1593620516/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1593624975/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1593633083/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1593637327/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1593696872/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1593701029/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1593708143/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1593709119/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1594043417/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1594061634/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1594068355/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7A/7A_1594128392/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7E/7E_1603292452/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7E/7E_1603309557/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7E/7E_1603314547/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7E/7E_1603321625/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7E/7E_1603327234/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7E/7E_1603373768/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7E/7E_1603406377/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7E/7E_1603409208/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7E/7E_1603719136/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7E/7E_1603737490/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7E/7E_1603746501/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7E/7E_1603808368/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7E/7E_1603834287/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7E/7E_1604073279/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7E/7E_1604086539/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7E/7E_1604104386/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7E/7E_1604146270/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7E/7E_1604174806/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7E/7E_1604508455/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7E/7E_1604522224/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7E/7E_1604541335/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7E/7E_1604587428/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7E/7E_1604935657/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7E/7E_1604965789/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7E/7E_1605285176/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7E/7E_1605305267/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7E/7E_1605315982/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/7E/7E_1605889226/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1603929757/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1603966680/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1604016419/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1604103283/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1604147386/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1604190038/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1604214785/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1604224222/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1604278781/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1604314003/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1604538637/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1604565269/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1604589439/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1604630543/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1604658728/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1604666276/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1605230607/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1605254008/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1605262502/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1605317390/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1605336146/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1605401907/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1605422619/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1605428200/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1605438437/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1605488271/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1605522674/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1607582006/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1607590102/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1607649094/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1607663116/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1607735993/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1607755141/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1607769127/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1607822759/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1607908668/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1607944061/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1608176003/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1608196385/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1608203746/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1608272959/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1608296659/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1608862601/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1608887726/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1608947368/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/83/83_1608955073/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/8B/8B_1594138963/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/8B/8B_1594153037/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/8B/8B_1594225495/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/8B/8B_1594300582/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/8B/8B_1594300904/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/8B/8B_1594313953/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/8B/8B_1594320348/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/8B/8B_1594328622/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/8B/8B_1594644905/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/8B/8B_1594674624/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/8B/8B_1594731698/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/8B/8B_1594757712/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/8B/8B_1594763406/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/8B/8B_1594816490/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/8B/8B_1594818336/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/8B/8B_1594831573/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/8B/8B_1594848059/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/8B/8B_1594904937/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/8B/8B_1594914137/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/8B/8B_1594927003/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/8B/8B_1594993425/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/8B/8B_1595015366/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/8B/8B_1595252880/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/8B/8B_1595262366/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/8B/8B_1595277964/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/8B/8B_1595437580/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/8B/8B_1595450243/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/8B/8B_1595523613/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/8B/8B_1595530690/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/8B/8B_1595538351/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1587166335/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1587167248/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1587209323/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1587293342/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1587305684/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1587310570/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1587312802/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1587314078/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1587319047/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1587327523/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1587334951/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1588544695/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1588544895/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1589039387/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1589050691/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1589051482/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1589152557/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1589200299/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1589211970/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1589228684/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1589282081/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1592752519/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1592752658/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1592925429/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1592929503/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1592936512/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1592942711/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1592945172/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593002737/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593006245/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593009834/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593014546/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593019043/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593021522/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593029038/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593091230/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593092855/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593098565/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593107532/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593110482/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593113840/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593115664/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593116487/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593118700/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593175365/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593182334/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593434552/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593436507/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593441535/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593443104/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593443279/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593446429/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593451003/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593453273/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593454489/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593458351/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593523361/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593608450/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593611980/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593623016/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593635623/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593694830/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593703320/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593710745/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1593720218/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1594125017/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/94/94_1594129474/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1603671305/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1603681317/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1603685056/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1603692429/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1603693197/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1603693561/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1603929535/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1603929659/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1603933213/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1603934355/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1603944938/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1603950453/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1603951073/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1603952237/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1604018298/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1604018860/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1604020604/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1604026527/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1604028580/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1604029600/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1604032944/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1604036907/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1604037255/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1604041261/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1604043352/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1604046977/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1604196392/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1604197220/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1604211037/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1604212249/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1604569017/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1604624541/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1604625917/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1604637443/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1604640819/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1604641179/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1604646790/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1604652152/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1604652324/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1604654730/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1605144876/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1605162029/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1605168600/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1605177819/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1605182166/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1605240943/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1605241050/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1605241814/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1605246857/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1605406957/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1605407143/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1605407666/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1605417734/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1606958133/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1606959940/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1606972127/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1606972651/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1606973939/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1606976272/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1606983743/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1606985234/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1606987563/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1607043192/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1607045808/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1607131158/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1607144946/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1607147439/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1607150884/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1607215814/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1607218219/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1607219762/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1607229325/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1607229558/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1607232172/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1607561446/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1607576785/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1607585026/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1607648493/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1607652757/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1607664323/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1607672427/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1607673482/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1607676959/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1607681888/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1607735684/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1607751901/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1607752220/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1607755833/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1607760334/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/BG/BG_1607770986/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1586788313/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1587567895/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1587568353/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1587640779/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1587646985/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1587647855/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1587660308/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1587687471/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1588162715/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1588172175/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1588189759/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1588205936/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1588536145/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1588548635/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1588972583/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1588981607/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1588981804/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1589026517/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1589034718/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1589052103/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1589052154/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1589113933/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1589202513/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1589216580/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1589228164/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1589292074/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1589831911/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1589901374/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1590172162/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1590237729/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1592752859/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1592925596/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1593004524/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1593023688/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1593088528/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1593106218/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1593183121/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1593437835/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1593536265/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1593632057/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1593694242/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1593697107/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1593783290/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1594059133/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/CE/CE_1594129814/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/DF/DF_1594231189/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/DF/DF_1594296700/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/DF/DF_1594305457/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/DF/DF_1594385893/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/DF/DF_1594662154/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/DF/DF_1594757884/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/DF/DF_1594907019/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/DF/DF_1594991923/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/DF/DF_1595273281/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/DF/DF_1595337957/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/DF/DF_1595429921/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/DF/DF_1595512329/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/DF/DF_1595526948/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/DF/DF_1595617578/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/DF/DF_1595854003/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/DF/DF_1595941102/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/DF/DF_1596031340/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/DF/DF_1596114677/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/DF/DF_1596205551/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/DF/DF_1596476007/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/DF/DF_1596543989/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/DF/DF_1596630398/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/DF/DF_1596719209/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/DF/DF_1596735393/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/DF/DF_1596802799/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/DF/DF_1596814961/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1587206108/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1587236732/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1587241555/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1587294299/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1587298478/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1587302737/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1587312370/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1587315090/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1587318394/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1587324331/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1587329010/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1587383217/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1587393366/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1587409032/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1587409707/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1587417188/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1588984019/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1589028644/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1589028974/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1589051416/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1589113150/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1589200218/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1589306182/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1589306729/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1589312746/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1589802835/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1589811508/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1589839893/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1589889235/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1589917617/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1590149482/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1592752787/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1592937530/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1592937902/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1592938003/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1592939478/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1592945524/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1593002275/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1593015418/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1593021695/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1593104925/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1593439701/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1593461673/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1593538007/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1593543088/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1593551794/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1593612140/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1593624124/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1593630180/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1593711228/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1593726493/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1593786145/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1593809250/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1594043080/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1594049696/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1594051892/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/E4/E4_1594057956/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1603463571/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1603543833/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1603574437/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1603574790/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1603627843/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1603884903/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1603895434/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1603931405/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1603972494/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1603993236/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1604323585/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1604342951/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1604767157/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1604840929/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1605101659/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1605118411/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1605118579/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1605186788/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1605533971/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1605625156/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1605881234/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1605972254/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1606052378/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1606762920/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1607528704/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1607559497/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1607606863/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1607634439/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1607644800/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1607959367/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1608048804/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/EG/EG_1608049371/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1594141473/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1594217466/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1594218280/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1594223270/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1594235058/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1594390055/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1594402134/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1594403655/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1594647650/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1594671025/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1594746945/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1594758671/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1594820907/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1594825280/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1594830652/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1594843057/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1594920460/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1594927034/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1594932553/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1594934714/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1594934801/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1594996818/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1595014348/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1595254546/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1595272717/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1595337790/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1595344020/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1595351362/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1595358823/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1595421778/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1595438005/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1595439251/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1595514881/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1595515035/HR.csv.gz
+/Users/andersaskeland/Rostools/Teaching/intermediate_during_course_2/LearnR3/data-raw/nurses-stress/stress/F5/F5_1595533978/HR.csv.gz</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>hr_data <span class="ot">&lt;-</span> hr_files <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(read) <span class="sc">|&gt;</span> <span class="co"># NO BRACKETS!</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list_rbind</span>(<span class="at">names_to =</span> <span class="st">"file_path_id"</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>hr_data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6,044 × 3
+   file_path_id                                        collection_datetime    hr
+   &lt;chr&gt;                                               &lt;dttm&gt;              &lt;dbl&gt;
+ 1 /Users/andersaskeland/Rostools/Teaching/intermedia… 2020-07-07 16:43:07  83.7
+ 2 /Users/andersaskeland/Rostools/Teaching/intermedia… 2020-07-07 16:43:20  78.2
+ 3 /Users/andersaskeland/Rostools/Teaching/intermedia… 2020-07-07 16:43:41  72.5
+ 4 /Users/andersaskeland/Rostools/Teaching/intermedia… 2020-07-07 16:43:43  73.2
+ 5 /Users/andersaskeland/Rostools/Teaching/intermedia… 2020-07-07 16:44:18  77.8
+ 6 /Users/andersaskeland/Rostools/Teaching/intermedia… 2020-07-07 16:44:35  83.7
+ 7 /Users/andersaskeland/Rostools/Teaching/intermedia… 2020-07-07 16:44:37  84.1
+ 8 /Users/andersaskeland/Rostools/Teaching/intermedia… 2020-07-07 16:44:44  85.2
+ 9 /Users/andersaskeland/Rostools/Teaching/intermedia… 2020-07-07 16:44:52  83.7
+10 /Users/andersaskeland/Rostools/Teaching/intermedia… 2020-07-07 16:45:02  83.1
+# ℹ 6,034 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="loading-all" class="level2">
+<h2 class="anchored" data-anchor-id="loading-all">Loading all</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_all</span>(<span class="st">"HR.csv.gz"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="inspecting-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="inspecting-the-data">inspecting the data</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>hr_data <span class="ot">&lt;-</span> <span class="fu">read_all</span>(<span class="st">"HR.csv.gz"</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>survey_data <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"data-raw/nurses-stress/survey-results.csv.gz"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read</span>()</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>hr_data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6,044 × 3
+   file_path_id                                        collection_datetime    hr
+   &lt;chr&gt;                                               &lt;dttm&gt;              &lt;dbl&gt;
+ 1 /Users/andersaskeland/Rostools/Teaching/intermedia… 2020-07-07 16:43:07  83.7
+ 2 /Users/andersaskeland/Rostools/Teaching/intermedia… 2020-07-07 16:43:20  78.2
+ 3 /Users/andersaskeland/Rostools/Teaching/intermedia… 2020-07-07 16:43:41  72.5
+ 4 /Users/andersaskeland/Rostools/Teaching/intermedia… 2020-07-07 16:43:43  73.2
+ 5 /Users/andersaskeland/Rostools/Teaching/intermedia… 2020-07-07 16:44:18  77.8
+ 6 /Users/andersaskeland/Rostools/Teaching/intermedia… 2020-07-07 16:44:35  83.7
+ 7 /Users/andersaskeland/Rostools/Teaching/intermedia… 2020-07-07 16:44:37  84.1
+ 8 /Users/andersaskeland/Rostools/Teaching/intermedia… 2020-07-07 16:44:44  85.2
+ 9 /Users/andersaskeland/Rostools/Teaching/intermedia… 2020-07-07 16:44:52  83.7
+10 /Users/andersaskeland/Rostools/Teaching/intermedia… 2020-07-07 16:45:02  83.1
+# ℹ 6,034 more rows</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>survey_data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 20
+   id    start_time end_time duration date      stress_level covid_related
+   &lt;chr&gt; &lt;time&gt;     &lt;time&gt;   &lt;time&gt;   &lt;chr&gt;            &lt;dbl&gt;         &lt;dbl&gt;
+ 1 5C    08:00      09:00    01:00    4/15/2020            1             0
+ 2 5C    17:31      17:58    00:27    4/14/2020            1             0
+ 3 E4    15:32      15:37    00:05    4/18/2020            2             0
+ 4 E4    14:05      14:11    00:06    4/18/2020            2             0
+ 5 7A    13:52      14:03    00:11    4/18/2020            2             0
+ 6 94    08:49      08:56    00:07    4/18/2020           NA            NA
+ 7 94    09:29      09:36    00:07    4/18/2020           NA            NA
+ 8 E4    08:15      08:24    00:09    4/18/2020            2             0
+ 9 E4    09:32      09:38    00:06    4/18/2020            2             0
+10 7A    09:13      10:13    01:00    4/19/2020            2             0
+# ℹ 13 more variables: treating_a_covid_patient &lt;dbl&gt;, patient_in_crisis &lt;dbl&gt;,
+#   patient_or_patient_s_family &lt;dbl&gt;, doctors_or_colleagues &lt;dbl&gt;,
+#   administration_lab_pharmacy_radiology_or_other_ancilliary_services &lt;dbl&gt;,
+#   increased_workload &lt;dbl&gt;, technology_related_stress &lt;dbl&gt;,
+#   lack_of_supplies &lt;dbl&gt;, documentation &lt;dbl&gt;,
+#   competency_related_stress &lt;dbl&gt;,
+#   saftey_physical_or_physiological_threats &lt;dbl&gt;, …</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>hr_data <span class="sc">|&gt;</span> </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">id =</span> <span class="fu">str_extract</span>(</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>      file_path_id,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">pattern =</span> <span class="st">"/stress/[:alnum:]{2}/"</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span> </span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_remove</span>(<span class="st">"/stress/"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_remove</span>(<span class="st">"/"</span>),</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">.before =</span> file_path_id</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>file_path_id)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6,044 × 3
+   id    collection_datetime    hr
+   &lt;chr&gt; &lt;dttm&gt;              &lt;dbl&gt;
+ 1 15    2020-07-07 16:43:07  83.7
+ 2 15    2020-07-07 16:43:20  78.2
+ 3 15    2020-07-07 16:43:41  72.5
+ 4 15    2020-07-07 16:43:43  73.2
+ 5 15    2020-07-07 16:44:18  77.8
+ 6 15    2020-07-07 16:44:35  83.7
+ 7 15    2020-07-07 16:44:37  84.1
+ 8 15    2020-07-07 16:44:44  85.2
+ 9 15    2020-07-07 16:44:52  83.7
+10 15    2020-07-07 16:45:02  83.1
+# ℹ 6,034 more rows</code></pre>
 </div>
 </div>
 </section>

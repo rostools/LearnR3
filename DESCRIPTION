@@ -8,8 +8,10 @@ BugReports: https://github.com/rostools/LearnR3/issues
 Imports: 
     fs,
     here,
+    lubridate,
     purrr,
     readr,
-    snakecase
+    snakecase,
+    tidyselect
 Depends: 
     tidyverse
