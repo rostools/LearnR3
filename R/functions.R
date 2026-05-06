@@ -33,3 +33,24 @@ read_all <- function(filename) {
 
   return(data)
 }
+
+#' Get the participant ID from the file path column.
+#'
+#' @param data Data with `file_path_id` column.
+#'
+#' @returns A data frame/tibble.
+#'
+get_participant_id <- function(data) {
+  data_with_id <- data |>
+    dplyr::mutate(
+      id = stringr::str_extract(
+        file_path_id,
+        "/stress/[:alnum:]{2}/"
+      ) |>
+        stringr::str_remove("/stress/") |>
+        stringr::str_remove("/"),
+      .before = file_path_id
+    ) |>
+    dplyr::select(-file_path_id)
+  return(data_with_id)
+}
