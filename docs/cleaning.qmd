@@ -32,4 +32,5 @@ bvp_data <- read_all("BVP.csv.gz") |>
 
 eda_data <- read_all("EDA.csv.gz") |>
   get_participant_id() |>
-  summarise_by_datetime()```
+  summarise_by_datetime()
+```
